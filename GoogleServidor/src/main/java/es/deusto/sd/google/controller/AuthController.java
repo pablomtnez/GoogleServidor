@@ -35,7 +35,10 @@ public class AuthController {
 
     // Endpoint para iniciar sesión
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {
+    public ResponseEntity<String> login(
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "password") String password
+    ) {
         return userService.validateUser(email, password)
                 .map(user -> {
                     logger.info("Login successful for user: {}", email);
